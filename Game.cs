@@ -20,8 +20,10 @@ sealed class Game
         _Loop();
     }
 
-    private void _Loop() {
-        while (_running) {
+    private void _Loop()
+    {
+        while (_running)
+        {
             _matrix.Print();
             string s = Console.ReadLine() ?? "";
         }
