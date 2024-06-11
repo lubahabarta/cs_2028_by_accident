@@ -25,7 +25,12 @@ sealed class Game
         while (_running)
         {
             _matrix.Print();
-            string s = Console.ReadLine() ?? "";
+            _WatchKeys();
         }
+    }
+
+    private void _WatchKeys()
+    {
+        string key = ConsoleUtil.AskForString("Press any key to continue...");
     }
 }
