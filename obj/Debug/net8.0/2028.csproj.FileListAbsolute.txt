@@ -12,3 +12,4 @@ c:\Users\lhaba\www\C#\2028\obj\Debug\net8.0\refint\2028.dll
 c:\Users\lhaba\www\C#\2028\obj\Debug\net8.0\2028.pdb
 C:\Users\lhaba\www\C#\2028\obj\Debug\net8.0\2028.genruntimeconfig.cache
 C:\Users\lhaba\www\C#\2028\obj\Debug\net8.0\ref\2028.dll
+c:\Users\lhaba\www\C#\2028\obj\Debug\net8.0\2028.sourcelink.json
