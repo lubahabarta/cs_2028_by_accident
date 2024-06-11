@@ -2,14 +2,15 @@ namespace _2028;
 
 sealed class Game
 {
-    private bool _running;
+    private string _gameState; 
 
     private Matrix2d _matrix;
     
     public Game(sbyte size)
     {
         _matrix = new Matrix2d(size);
-        _running = true;
+        _gameState = "running";
+        Start();
     }
 
     public void Start()
@@ -19,15 +20,39 @@ sealed class Game
 
     private void _Loop()
     {
-        while (_running)
+        while (_gameState == "running")
         {
+            Console.Clear();
+            _matrix.Randomize();
             _matrix.Print();
+
             _WatchKeys();
+
+            if (_matrix.IsFull())
+                _gameState = "ended";
         }
     }
 
     private void _WatchKeys()
     {
-        string key = ConsoleUtil.AskForString("Press any key to continue...");
+        ConsoleKey key = Console.ReadKey().Key;
+        switch (key)
+        {
+            case ConsoleKey.UpArrow:
+                _matrix.MoveUp();
+                break;
+            case ConsoleKey.DownArrow:
+                _matrix.MoveDown();
+                break;
+            case ConsoleKey.LeftArrow:
+                _matrix.MoveLeft();
+                break;
+            case ConsoleKey.RightArrow:
+                _matrix.MoveRight();
+                break;
+            default:
+                _gameState = "ended";
+                break;
+        }
     }
 }

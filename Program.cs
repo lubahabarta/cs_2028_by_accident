@@ -2,7 +2,7 @@
 
 class Program
 {
-    private static sbyte _Setup()
+    private static sbyte _SizeInput()
     {
         sbyte size = 0;
         do {
@@ -16,9 +16,8 @@ class Program
     {
         Console.WriteLine("\n------------- PROGRAM START -------------\n");
 
-        sbyte size = _Setup();
+        sbyte size = _SizeInput();
         Game game = new Game(size);
-        game.Start();
     }
 
     
