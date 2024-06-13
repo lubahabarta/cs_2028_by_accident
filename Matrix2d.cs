@@ -66,13 +66,22 @@ class Matrix2d {
     public void MoveRight()
     {
         for (int y = 0; y < _matrix.GetLength(0); y++) {
-            int lastX = _matrix.GetLength(1) - 1;
-            for (int x = lastX; x > 0; x--) {
+
+            int lastMovedIndexTo = _matrix.GetLength(1) - 1;
+            int lastMoved = _matrix[lastMovedIndexTo, y];
+
+            for (int x = _matrix.GetLength(1) - 2; x >= 0; x--) {
                 if (_matrix[x, y] > 0) {
-                    if (_matrix[x + 1, y] == 0) {
-                        _matrix[x + 1, y] = _matrix[lastX, y];
-                        lastX = x + 1;
+                    if (_matrix[lastMovedIndexTo, y] == 0) {
+                        _matrix[lastMovedIndexTo, y] = _matrix[x, y];
+                        lastMoved = _matrix[x, y];
+                        _matrix[x, y] = 0;
+                    } else if (_matrix[x, y] == lastMoved) {
+                        _matrix[lastMovedIndexTo, y] *= 2;
+                        lastMoved = _matrix[lastMovedIndexTo, y];
+                        _matrix[x, y] = 0;
                     }
+                    x = lastMovedIndexTo;
                 }
             }   
         }

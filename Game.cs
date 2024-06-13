@@ -15,6 +15,7 @@ sealed class Game
 
     public void Start()
     {
+        _matrix.Randomize();
         _Loop();
     }
 
@@ -23,10 +24,11 @@ sealed class Game
         while (_gameState == "running")
         {
             Console.Clear();
-            _matrix.Randomize();
             _matrix.Print();
 
             _WatchKeys();
+
+            _matrix.Randomize();
 
             if (_matrix.IsFull())
                 _gameState = "ended";
