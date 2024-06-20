@@ -23,7 +23,8 @@ sealed class Game
     {
         while (_gameState == "running")
         {
-            Console.Clear();
+            // Console.Clear();
+            Console.WriteLine();
             _matrix.Print();
 
             _WatchKeys();

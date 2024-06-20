@@ -67,23 +67,41 @@ class Matrix2d {
     {
         for (int y = 0; y < _matrix.GetLength(0); y++) {
 
-            int lastMovedIndexTo = _matrix.GetLength(1) - 1;
-            int lastMoved = _matrix[lastMovedIndexTo, y];
+            Console.WriteLine();
+            int r = _matrix.GetLength(1) - 1;
+            int l = r - 1;
 
-            for (int x = _matrix.GetLength(1) - 2; x >= 0; x--) {
-                if (_matrix[x, y] > 0) {
-                    if (_matrix[lastMovedIndexTo, y] == 0) {
-                        _matrix[lastMovedIndexTo, y] = _matrix[x, y];
-                        lastMoved = _matrix[x, y];
-                        _matrix[x, y] = 0;
-                    } else if (_matrix[x, y] == lastMoved) {
-                        _matrix[lastMovedIndexTo, y] *= 2;
-                        lastMoved = _matrix[lastMovedIndexTo, y];
-                        _matrix[x, y] = 0;
-                    }
-                    x = lastMovedIndexTo;
+            while (r > 0) {
+                Console.WriteLine($"right: {r}");
+                Console.WriteLine($"left: {l}");
+
+                if (_matrix[r, y] == 0 && _matrix[l, y] > 0) {
+                    _matrix[r, y] = _matrix[l, y];
+                    _matrix[l, y] = 0;
+                    l = r - 1;
+                } else if (_matrix[r, y] == _matrix[l, y] && _matrix[r, y] > 0) {
+                    _matrix[r, y] += _matrix[l, y];
+                    _matrix[l, y] = 0;
+                    r -= 1;
+                    l = r - 1;
+                } else if (
+                    _matrix[r, y] != _matrix[l, y] &&
+                    _matrix[r, y] > 0 &&
+                    _matrix[l, y] > 0
+                ) {
+                    _matrix[r - 1, y] = _matrix[l, y];
+                    _matrix[l, y] = 0;
+                    r -= 1;
+                    l = r - 1;
                 }
-            }   
+
+                if (l - 1 < 0) {
+                    r--;
+                    l = r - 1;
+                } else {
+                    l--;
+                }
+            }
         }
     }
 
